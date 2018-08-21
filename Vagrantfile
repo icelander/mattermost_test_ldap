@@ -15,4 +15,5 @@ Vagrant.configure("2") do |config|
   setup_script.gsub!('#MYSQL_ROOT_PASSWORD', MYSQL_ROOT_PASSWORD)
  
   config.vm.provision :shell, inline: setup_script, run: 'once'
+  
 end

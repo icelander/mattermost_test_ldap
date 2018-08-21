@@ -1,9 +1,9 @@
 {
     "ServiceSettings": {
-        "SiteURL": "https://funderdome.movetoiceland.com/",
+        "SiteURL": "",
         "WebsocketURL": "",
         "LicenseFileLocation": "/opt/mattermost/license.txt",
-        "ListenAddress": "127.0.0.1:8065",
+        "ListenAddress": ":8065",
         "ConnectionSecurity": "",
         "TLSCertFile": "",
         "TLSKeyFile": "",
@@ -22,8 +22,7 @@
         "EnableOnlyAdminIntegrations": true,
         "EnablePostUsernameOverride": false,
         "EnablePostIconOverride": false,
-        "EnableAPIv3": false,
-        "EnableLinkPreviews": true,
+        "EnableLinkPreviews": false,
         "EnableTesting": false,
         "EnableDeveloper": false,
         "EnableSecurityFixAlert": true,
@@ -33,6 +32,9 @@
         "EnforceMultifactorAuthentication": false,
         "EnableUserAccessTokens": false,
         "AllowCorsFrom": "",
+        "CorsExposedHeaders": "",
+        "CorsAllowCredentials": false,
+        "CorsDebug": false,
         "AllowCookiesForSubdomains": false,
         "SessionLengthWebInDays": 30,
         "SessionLengthMobileInDays": 30,
@@ -42,8 +44,11 @@
         "WebsocketSecurePort": 443,
         "WebsocketPort": 80,
         "WebserverMode": "gzip",
-        "EnableCustomEmoji": true,
+        "EnableCustomEmoji": false,
         "EnableEmojiPicker": true,
+        "EnableGifPicker": false,
+        "GfycatApiKey": "2_KtH_W5",
+        "GfycatApiSecret": "3wLVZPiswc3DnaiaFoLkDvB4X0IV6CpMkj4tf2inJRsBY6-FnkT08zGmppWFgeof",
         "RestrictCustomEmojiCreation": "all",
         "RestrictPostDelete": "all",
         "AllowEditPost": "always",
@@ -60,16 +65,22 @@
         "EnableTutorial": true,
         "ExperimentalEnableDefaultChannelLeaveJoinMessages": true,
         "ExperimentalGroupUnreadChannels": "disabled",
+        "ExperimentalChannelOrganization": false,
         "ImageProxyType": "",
         "ImageProxyURL": "",
-        "ImageProxyOptions": ""
+        "ImageProxyOptions": "",
+        "EnableAPITeamDeletion": false,
+        "ExperimentalEnableHardenedMode": false,
+        "ExperimentalLimitClientConfig": false,
+        "EnableEmailInvitations": false
     },
     "TeamSettings": {
-        "SiteName": "Mattermost",
+        "SiteName": "Planet Express",
         "MaxUsersPerTeam": 50,
         "EnableTeamCreation": true,
         "EnableUserCreation": true,
-        "EnableOpenServer": true,
+        "EnableOpenServer": false,
+        "EnableUserDeactivation": false,
         "RestrictCreationToDomains": "",
         "EnableCustomBrand": false,
         "CustomBrandText": "",
@@ -89,8 +100,15 @@
         "MaxNotificationsPerChannel": 1000,
         "EnableConfirmNotificationsToChannel": true,
         "TeammateNameDisplay": "username",
+        "ViewArchivedChannels": true,
+        "ExperimentalEnableAutomaticReplies": false,
+        "ExperimentalHideTownSquareinLHS": false,
         "ExperimentalTownSquareIsReadOnly": false,
-        "ExperimentalPrimaryTeam": ""
+        "ExperimentalPrimaryTeam": "planet-express",
+        "ExperimentalDefaultChannels": [
+            "town-square",
+            "off-topic"
+        ]
     },
     "ClientRequirements": {
         "AndroidLatestVersion": "",
@@ -102,21 +120,23 @@
     },
     "SqlSettings": {
         "DriverName": "mysql",
-        "DataSource": "mmuser:o*rsxiD9\u0026dIw@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s",
+        "DataSource": "mmuser:really_secure_password@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s",
         "DataSourceReplicas": [],
         "DataSourceSearchReplicas": [],
         "MaxIdleConns": 20,
+        "ConnMaxLifetimeMilliseconds": 3600000,
         "MaxOpenConns": 300,
         "Trace": false,
-        "AtRestEncryptKey": "a9nbj0IgG7mHu2j/40g0uTZ4ShCyb4EP",
+        "AtRestEncryptKey": "aj9adereiqob4kep8jo7btjsdzpb9sag",
         "QueryTimeout": 30
     },
     "LogSettings": {
         "EnableConsole": true,
-        "ConsoleLevel": "DEBUG",
+        "ConsoleLevel": "INFO",
+        "ConsoleJson": true,
         "EnableFile": true,
-        "FileLevel": "DEBUG",
-        "FileFormat": "",
+        "FileLevel": "INFO",
+        "FileJson": true,
         "FileLocation": "",
         "EnableWebhookDebugging": true,
         "EnableDiagnostics": true
@@ -136,46 +156,51 @@
         "DriverName": "local",
         "Directory": "./data/",
         "EnablePublicLink": false,
-        "PublicLinkSalt": "5bkw3p13ch8wh7rsc4fxm8wzwabhdwor",
-        "InitialFont": "luximbi.ttf",
-        "AmazonS3AccessKeyId": "BJZEWR5G79MFE6PAKTL7",
-        "AmazonS3SecretAccessKey": "NluPsBU4tNB62u6YwtBUgHzNl3+JbEIx9Mw5YaQm",
-        "AmazonS3Bucket": "planet-express",
+        "PublicLinkSalt": "ejapyzk8gu6qegkwjqkde6s5ybq5yy7x",
+        "InitialFont": "nunito-bold.ttf",
+        "AmazonS3AccessKeyId": "",
+        "AmazonS3SecretAccessKey": "",
+        "AmazonS3Bucket": "",
         "AmazonS3Region": "",
-        "AmazonS3Endpoint": "127.0.0.1:9000",
-        "AmazonS3SSL": false,
+        "AmazonS3Endpoint": "s3.amazonaws.com",
+        "AmazonS3SSL": true,
         "AmazonS3SignV2": false,
         "AmazonS3SSE": false,
-        "AmazonS3Trace": true
+        "AmazonS3Trace": false
     },
     "EmailSettings": {
         "EnableSignUpWithEmail": true,
         "EnableSignInWithEmail": true,
         "EnableSignInWithUsername": true,
-        "SendEmailNotifications": true,
+        "SendEmailNotifications": false,
         "UseChannelInEmailNotifications": false,
-        "RequireEmailVerification": true,
-        "FeedbackName": "Planet Express Chat",
-        "FeedbackEmail": "mattermost@movetoiceland.com",
-        "FeedbackOrganization": "© 3001 Planet Express Inc, W 57th and Henry Hudson Parkway, Manhattan, New New York, United States, Earth, Sol System, Milky Way, Universe A",
-        "EnableSMTPAuth": true,
-        "SMTPUsername": "mattermost@movetoiceland.com",
-        "SMTPPassword": "\u00265m2Eg$8u#j7",
-        "SMTPServer": "smtp.gmail.com",
-        "SMTPPort": "465",
-        "ConnectionSecurity": "TLS",
-        "InviteSalt": "1ky6zdpw8zufb6mpi1hzz9srmnig4m3a",
-        "SendPushNotifications": true,
-        "PushNotificationServer": "http://push-test.mattermost.com",
+        "RequireEmailVerification": false,
+        "FeedbackName": "",
+        "FeedbackEmail": "",
+        "FeedbackOrganization": "",
+        "EnableSMTPAuth": false,
+        "SMTPUsername": "",
+        "SMTPPassword": "",
+        "SMTPServer": "",
+        "SMTPPort": "",
+        "ConnectionSecurity": "",
+        "InviteSalt": "betxpwkj3i7p6kegry9osg9diwxe71b6",
+        "SendPushNotifications": false,
+        "PushNotificationServer": "",
         "PushNotificationContents": "generic",
-        "EnableEmailBatching": true,
+        "EnableEmailBatching": false,
         "EmailBatchingBufferSize": 256,
         "EmailBatchingInterval": 30,
+        "EnablePreviewModeBanner": true,
         "SkipServerCertificateVerification": false,
         "EmailNotificationContentsType": "full",
         "LoginButtonColor": "",
         "LoginButtonBorderColor": "",
         "LoginButtonTextColor": ""
+    },
+    "ExtensionSettings": {
+        "EnableExperimentalExtensions": false,
+        "AllowedExtensionsIDs": []
     },
     "RateLimitSettings": {
         "Enable": false,
@@ -187,16 +212,16 @@
         "VaryByHeader": ""
     },
     "PrivacySettings": {
-        "ShowEmailAddress": false,
-        "ShowFullName": false
+        "ShowEmailAddress": true,
+        "ShowFullName": true
     },
     "SupportSettings": {
         "TermsOfServiceLink": "https://about.mattermost.com/default-terms/",
-        "PrivacyPolicyLink": "",
-        "AboutLink": "",
-        "HelpLink": "",
-        "ReportAProblemLink": "",
-        "SupportEmail": ""
+        "PrivacyPolicyLink": "https://about.mattermost.com/default-privacy-policy/",
+        "AboutLink": "https://about.mattermost.com/default-about/",
+        "HelpLink": "https://about.mattermost.com/default-help/",
+        "ReportAProblemLink": "https://about.mattermost.com/default-report-a-problem/",
+        "SupportEmail": "feedback@mattermost.com"
     },
     "AnnouncementSettings": {
         "EnableBanner": false,
@@ -239,27 +264,28 @@
         "UserApiEndpoint": "https://graph.microsoft.com/v1.0/me"
     },
     "LdapSettings": {
-        "Enable": false,
-        "EnableSync": false,
-        "LdapServer": "",
+        "Enable": true,
+        "EnableSync": true,
+        "LdapServer": "127.0.0.1",
         "LdapPort": 389,
         "ConnectionSecurity": "",
-        "BaseDN": "",
+        "BaseDN": "ou=people,dc=planetexpress,dc=com",
         "BindUsername": "",
         "BindPassword": "",
-        "UserFilter": "",
-        "FirstNameAttribute": "",
-        "LastNameAttribute": "",
-        "EmailAttribute": "",
-        "UsernameAttribute": "",
-        "NicknameAttribute": "",
-        "IdAttribute": "",
-        "PositionAttribute": "",
+        "UserFilter": "(objectClass=person)",
+        "FirstNameAttribute": "givenName",
+        "LastNameAttribute": "sn",
+        "EmailAttribute": "mail",
+        "UsernameAttribute": "uid",
+        "NicknameAttribute": "displayName",
+        "IdAttribute": "mail",
+        "PositionAttribute": "employeeType",
+        "LoginIdAttribute": "uid",
         "SyncIntervalMinutes": 60,
         "SkipCertificateVerification": false,
         "QueryTimeout": 60,
-        "MaxPageSize": 0,
-        "LoginFieldName": "",
+        "MaxPageSize": 2000,
+        "LoginFieldName": "Planet Express Username",
         "LoginButtonColor": "",
         "LoginButtonBorderColor": "",
         "LoginButtonTextColor": ""
@@ -300,9 +326,9 @@
         "LoginButtonTextColor": ""
     },
     "NativeAppSettings": {
-        "AppDownloadLink": "",
-        "AndroidAppDownloadLink": "",
-        "IosAppDownloadLink": ""
+        "AppDownloadLink": "https://about.mattermost.com/downloads/",
+        "AndroidAppDownloadLink": "https://about.mattermost.com/mattermost-android-app/",
+        "IosAppDownloadLink": "https://about.mattermost.com/mattermost-ios-app/"
     },
     "ClusterSettings": {
         "Enable": false,
@@ -312,12 +338,19 @@
         "UseExperimentalGossip": false,
         "ReadOnlyConfig": true,
         "GossipPort": 8074,
-        "StreamingPort": 8075
+        "StreamingPort": 8075,
+        "MaxIdleConns": 100,
+        "MaxIdleConnsPerHost": 128,
+        "IdleConnTimeoutMilliseconds": 90000
     },
     "MetricsSettings": {
         "Enable": false,
         "BlockProfileRate": 0,
         "ListenAddress": ":8067"
+    },
+    "ExperimentalSettings": {
+        "ClientSideCertEnable": false,
+        "ClientSideCertCheck": "secondary"
     },
     "AnalyticsSettings": {
         "MaxUsersForStatistics": 2500
@@ -378,13 +411,10 @@
         "Directory": "./plugins",
         "ClientDirectory": "./client/plugins",
         "Plugins": {},
-        "PluginStates": {
-            "jira": {
-                "Enable": true
-            }
-        }
+        "PluginStates": {}
     },
     "DisplaySettings": {
+        "CustomUrlSchemes": [],
         "ExperimentalTimezone": false
     },
     "TimezoneSettings": {
