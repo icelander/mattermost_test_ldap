@@ -1,4 +1,4 @@
-dn: cn=John A. Zoidberg,ou=people,dc=planetexpress,dc=com
+dn: cn=Turanga Leela,ou=people,dc=planetexpress,dc=com
 changetype: modify
-replace: mail
-mail: Zoidberg@planetexpress.com
+replace: uid
+uid: leela-fry

@@ -42,13 +42,14 @@ cp /vagrant/mattermost.service /lib/systemd/system/mattermost.service
 systemctl daemon-reload
 
 cd /opt/mattermost
-bin/mattermost user create --email admin@planetexpress.com --username admin --password AngryD0me
+bin/mattermost user create --email admin@planetexpress.com --username admin --password admin
+bin/mattermost team create --name planet-express --display_name "Planet Express"
 bin/mattermost team add planet-express admin@planetexpress.com
 
 service mysql start
 service mattermost start
 
-chmod +x /vagrant/update_zoidberg.sh
+chmod +x /vagrant/update_leela.sh
 printf '=%.0s' {1..80}
 echo 
 echo '                     VAGRANT UP!'
