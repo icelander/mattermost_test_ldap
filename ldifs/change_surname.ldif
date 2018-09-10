@@ -1,4 +1,19 @@
-dn: cn=Turanga Leela,ou=people,dc=planetexpress,dc=com
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
 changetype: modify
 replace: uid
-uid: leela-fry
+uid: fry-turanga
+
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+changetype: modify
+replace: mail
+uid: fry-turanga@planetexpress.com
+
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+changetype: modify
+replace: displayName
+uid: Fry-Turanga
+
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+changetype: modify
+replace: sn
+uid: Fry-Turanga
