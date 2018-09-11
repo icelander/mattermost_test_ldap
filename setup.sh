@@ -51,10 +51,12 @@ bin/mattermost team add planet-express admin@planetexpress.com
 service mysql start
 service mattermost start
 
+IP_ADDR=`/sbin/ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
+
 chmod +x /vagrant/update_leela.sh
 printf '=%.0s' {1..80}
 echo 
 echo '                     VAGRANT UP!'
-echo 'GO TO http://localhost:8065 and log in with `zoidberg`'
+echo "GO TO http://${IP_ADDR}:8065 and log in with \`fry\`"
 echo
 printf '=%.0s' {1..80}
