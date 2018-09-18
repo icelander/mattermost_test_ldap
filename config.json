@@ -100,11 +100,11 @@
         "MaxNotificationsPerChannel": 1000,
         "EnableConfirmNotificationsToChannel": true,
         "TeammateNameDisplay": "username",
-        "ViewArchivedChannels": true,
+        "ExperimentalViewArchivedChannels": false,
         "ExperimentalEnableAutomaticReplies": false,
         "ExperimentalHideTownSquareinLHS": false,
         "ExperimentalTownSquareIsReadOnly": false,
-        "ExperimentalPrimaryTeam": "planet-express",
+        "ExperimentalPrimaryTeam": "",
         "ExperimentalDefaultChannels": [
             "town-square",
             "off-topic"
@@ -169,9 +169,9 @@
         "AmazonS3Trace": false
     },
     "EmailSettings": {
-        "EnableSignUpWithEmail": true,
-        "EnableSignInWithEmail": true,
-        "EnableSignInWithUsername": true,
+        "EnableSignUpWithEmail": false,
+        "EnableSignInWithEmail": false,
+        "EnableSignInWithUsername": false,
         "SendEmailNotifications": false,
         "UseChannelInEmailNotifications": false,
         "RequireEmailVerification": false,
