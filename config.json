@@ -276,7 +276,7 @@
         "FirstNameAttribute": "givenName",
         "LastNameAttribute": "sn",
         "EmailAttribute": "mail",
-        "UsernameAttribute": "uid",
+        "UsernameAttribute": "displayName",
         "NicknameAttribute": "",
         "IdAttribute": "uid",
         "PositionAttribute": "employeeType",

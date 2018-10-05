@@ -8,7 +8,7 @@
 3. Add the user `fry` to the Planet Express team
 4. Wonder why we don't make the only team the default team for LDAP users.
 5. Log out and log in with the username/password `fry`
-3. `vagrant ssh` into the test server and run `/vagrant/update_leela.sh` which changes the fields to replicate the changes made by the user.
+3. `vagrant ssh` into the test server and run `/vagrant/update.sh` which changes the fields to replicate the changes made by the user.
 4. Go back to [your new server] and notice you get logged out
 
 [Virtualbox]: https://www.virtualbox.org/wiki/Downloads
