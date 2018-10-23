@@ -1,0 +1,4 @@
+dn: cn=config
+changetype: modify
+replace: olcTLSCipherSuite
+olcTLSCipherSuite: EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
