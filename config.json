@@ -2,7 +2,7 @@
     "ServiceSettings": {
         "SiteURL": "",
         "WebsocketURL": "",
-        "LicenseFileLocation": "/opt/mattermost/license.txt",
+        "LicenseFileLocation": "",
         "ListenAddress": ":8065",
         "ConnectionSecurity": "",
         "TLSCertFile": "",
