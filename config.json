@@ -2,7 +2,7 @@
     "ServiceSettings": {
         "SiteURL": "",
         "WebsocketURL": "",
-        "LicenseFileLocation": "",
+        "LicenseFileLocation": "/opt/mattermost/license.txt",
         "ListenAddress": ":8065",
         "ConnectionSecurity": "",
         "TLSCertFile": "",
@@ -272,7 +272,7 @@
         "BaseDN": "ou=people,dc=planetexpress,dc=com",
         "BindUsername": "",
         "BindPassword": "",
-        "UserFilter": "(objectClass=person)",
+        "UserFilter": "(memberOf=cn=admin_staff,ou=people,dc=planetexpress,dc=com)",
         "FirstNameAttribute": "givenName",
         "LastNameAttribute": "sn",
         "EmailAttribute": "mail",
