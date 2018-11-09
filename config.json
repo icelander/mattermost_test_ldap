@@ -1,6 +1,6 @@
 {
     "ServiceSettings": {
-        "SiteURL": "",
+        "SiteURL": "http://127.0.0.1:8065",
         "WebsocketURL": "",
         "LicenseFileLocation": "/opt/mattermost/license.txt",
         "ListenAddress": ":8065",
@@ -169,9 +169,9 @@
         "AmazonS3Trace": false
     },
     "EmailSettings": {
-        "EnableSignUpWithEmail": false,
-        "EnableSignInWithEmail": false,
-        "EnableSignInWithUsername": false,
+        "EnableSignUpWithEmail": true,
+        "EnableSignInWithEmail": true,
+        "EnableSignInWithUsername": true,
         "SendEmailNotifications": false,
         "UseChannelInEmailNotifications": false,
         "RequireEmailVerification": false,
@@ -264,8 +264,8 @@
         "UserApiEndpoint": "https://graph.microsoft.com/v1.0/me"
     },
     "LdapSettings": {
-        "Enable": true,
-        "EnableSync": true,
+        "Enable": false,
+        "EnableSync": false,
         "LdapServer": "127.0.0.1",
         "LdapPort": 389,
         "ConnectionSecurity": "",
