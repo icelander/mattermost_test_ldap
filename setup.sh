@@ -1,14 +1,18 @@
 #!/bin/bash
 
 echo "Updating and Upgrading"
-apt-get -qq -y update > /dev/null
-apt-get -qq -y upgrade > /dev/null
+apt-get -qq -y update
+
 
 export DEBIAN_FRONTEND=noninteractive
-debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password password #MYSQL_ROOT_PASSWORD'
-debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password_again password #MYSQL_ROOT_PASSWORD'
+debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password password #MYSQL_ROOT_PASSWORD'
+debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password_again password #MYSQL_ROOT_PASSWORD'
 echo "Installing MariaDB, Docker, and ldapscripts"
-apt-get install -y -q mariadb-server > /dev/null
+apt-get install -y -q mysql-server docker.io ldapscripts
+
+echo 'Setting up Test LDAP'
+docker pull rroemhild/test-openldap
+docker run --privileged -d -p 389:389 rroemhild/test-openldap
 
 sed -i 's/MATTERMOST_PASSWORD/#MATTERMOST_PASSWORD/' /vagrant/db_setup.sql
 echo "Setting up database"
@@ -16,7 +20,7 @@ mysql -uroot -p#MYSQL_ROOT_PASSWORD < /vagrant/db_setup.sql
 
 rm -rf /opt/mattermost
 
-cp /vagrant/mattermost-5.4.0-linux-amd64.tar.gz ./
+cp /vagrant/mattermost-5.3.0-linux-amd64.tar.gz ./
 
 tar -xzf mattermost*.gz
 
@@ -39,9 +43,9 @@ cp /vagrant/mattermost.service /lib/systemd/system/mattermost.service
 systemctl daemon-reload
 
 cd /opt/mattermost
-# bin/mattermost user create --email admin@planetexpress.com --username admin --password admin
-# bin/mattermost team create --name planet-express --display_name "Planet Express" --email "professor@planetexpress.com"
-# bin/mattermost team add planet-express admin@planetexpress.com
+bin/mattermost user create --email admin@planetexpress.com --username admin --password admin
+bin/mattermost team create --name planet-express --display_name "Planet Express" --email "professor@planetexpress.com"
+bin/mattermost team add planet-express admin@planetexpress.com
 
 service mysql start
 service mattermost start
