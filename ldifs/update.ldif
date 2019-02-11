@@ -1,4 +1,4 @@
-dn: cn=John A. Zoidberg,ou=people,dc=planetexpress,dc=com
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
 changetype: modify
-replace: uid
-uid: john
+replace: displayName
+displayName: Fry. 
