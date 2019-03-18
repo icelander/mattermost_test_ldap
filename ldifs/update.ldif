@@ -1,0 +1,4 @@
+dn: cn=Philip J. Fry,ou=people,dc=planetexpress,dc=com
+changetype: modify
+replace: displayName
+displayName: Fry. 
