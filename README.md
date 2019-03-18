@@ -1,20 +1,30 @@
-# Replicating Surname Change Issue
+# Mattermost Test LDAP Server
 
-## Steps to Reproduce
+This sets up a Mattermost server and connects it to Rafael Römhild's great [OpenLDAP Docker Image for testing](https://github.com/rroemhild/docker-test-openldap).
 
-0. Install [Virtualbox] and [Vagrant]
-1. run `vagrant up` from this directory
-2. Go to [your new server] Try to log in with the username and password `fry`, then log out and log in with the username and password `admin`
-3. Add the user `fry` to the Planet Express team
-4. Wonder why we don't make the only team the default team for LDAP users.
-5. Log out and log in with the username/password `fry`
-3. `vagrant ssh` into the test server and run `/vagrant/update.sh` which changes the fields to replicate the changes made by the user.
-4. Go back to [your new server] and notice you get logged out
+## Server Setup
 
-[Virtualbox]: https://www.virtualbox.org/wiki/Downloads
-[Vagrant]: https://www.vagrantup.com/downloads.html
-[your new server]: http://localhost:8065
+1. Install license file in this directory, named `license.txt`
+2. Run `vagrant up`
+3. Go to `http://127.0.0.1` and log in with `admin/admin` or `professor/professor`
 
-## Important!
+For more logins, check the LDAP server's documentation.
 
-*When you're done testing make sure to run `vagrant halt` to stop the server. To delete it entirely, run `vagrant destroy`*
+## Scripts
+
+### ldap-check.sh
+
+This is cloned from [the Mattermost server scripts](https://github.com/mattermost/mattermost-server/blob/master/scripts/ldap-check.sh) and reads your Mattermost config and generates and run an `ldapsearch` command to test your settings.
+
+0. Install the `ldapsearch` binary on your system
+1. `sudo mv /vagrant/ldap-check.sh /opt/mattermost/ldap-check.sh`
+2. `cd /opt/mattermost`
+3. `sudo chmod +x ldap-check.sh`
+4. `./ldap-check.sh user@example.com`
+
+### update.sh
+
+This uses the `ldapmodify` command to make changes to the LDAP server to ensure they're synced to Mattermost. Example LDIF files are available in the `ldifs` directory.
+
+0. Install the `ldapmodify` on your system
+1. `/vagrant/update.sh`
