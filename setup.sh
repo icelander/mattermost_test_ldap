@@ -21,7 +21,7 @@ mysql -uroot -p#MYSQL_ROOT_PASSWORD < /vagrant/db_setup.sql
 rm -rf /opt/mattermost
 
 # wget https://releases.mattermost.com/5.9.0/mattermost-5.9.0-linux-amd64.tar.gz
-cp /vagrant/mattermost-5.9.0-linux-amd64.tar.gz ./
+cp /vagrant/mattermost-5.9.0-linux.amd64.tar.gz ./
 
 tar -xzf mattermost*.gz
 
@@ -29,12 +29,10 @@ rm mattermost*.gz
 mv mattermost /opt
 
 mkdir /opt/mattermost/data
-rm /opt/mattermost/config/config.json
+mv /opt/mattermost/config/config.json /opt/mattermost/config/config.orig.json
+jq -s '.[0] * .[1]' /opt/mattermost/config/config.orig.json /vagrant/config.json > /opt/mattermost/config/config.json
 
-cp /vagrant/license.txt /opt/mattermost/license.txt
-
-sed -i -e 's/mostest/#MATTERMOST_PASSWORD/g' /vagrant/config.json
-ln -s /vagrant/config.json /opt/mattermost/config/config.json
+cp /vagrant/e20license.txt /opt/mattermost/license.txt
 
 useradd --system --user-group mattermost
 chown -R mattermost:mattermost /opt/mattermost
@@ -44,7 +42,7 @@ cp /vagrant/mattermost.service /lib/systemd/system/mattermost.service
 systemctl daemon-reload
 
 cd /opt/mattermost
-bin/mattermost config validate
+bin/mattermost version
 bin/mattermost user create --email admin@planetexpress.com --username admin --password admin --system-admin
 bin/mattermost team create --name planet-express --display_name "Planet Express" --email "admin@planetexpress.com"
 bin/mattermost team add planet-express admin@planetexpress.com
