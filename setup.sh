@@ -10,6 +10,9 @@ debconf-set-selections <<< 'mysql-server-10.0 mysql-server/root_password_again p
 echo "Installing MariaDB, Docker, and ldapscripts"
 apt-get install -y -q mysql-server docker.io ldapscripts jq
 
+sed -i 's/bind-address/# bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf
+service mysql restart
+
 echo 'Setting up Test LDAP'
 docker pull rroemhild/test-openldap
 docker run --privileged -d -p 389:389 rroemhild/test-openldap
@@ -20,8 +23,7 @@ mysql -uroot -p#MYSQL_ROOT_PASSWORD < /vagrant/db_setup.sql
 
 rm -rf /opt/mattermost
 
-# wget https://releases.mattermost.com/5.9.0/mattermost-5.9.0-linux-amd64.tar.gz
-cp /vagrant/mattermost-5.9.0-linux.amd64.tar.gz ./
+cp /vagrant/mattermost-5.10.0-linux-amd64.tar.gz ./
 
 tar -xzf mattermost*.gz
 
@@ -43,9 +45,12 @@ systemctl daemon-reload
 
 cd /opt/mattermost
 bin/mattermost version
-bin/mattermost user create --email admin@planetexpress.com --username admin --password admin --system-admin
+bin/mattermost user create --email admin@planetexpress.com --username admin --password admin --system_admin
 bin/mattermost team create --name planet-express --display_name "Planet Express" --email "admin@planetexpress.com"
+bin/mattermost team create --name olympus --display_name "Administrative Staff" --email "admin@planetexpress.com"
+bin/mattermost team create --name ship-crew --display_name "Ship's Crew" --email "admin@planetexpress.com"
 bin/mattermost team add planet-express admin@planetexpress.com
+bin/mattermost team add olympus admin@planetexpress.com
 
 service mysql start
 service mattermost start

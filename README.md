@@ -6,9 +6,16 @@ This sets up a Mattermost server and connects it to Rafael Römhild's great [Ope
 
 1. Install license file in this directory, named `license.txt`
 2. Run `vagrant up`
-3. Go to `http://127.0.0.1` and log in with `admin/admin` or `professor/professor`
+3. Go to `http://127.0.0.1` and log in with `admin/admin`
+4. Configure the Planet Express Team to Open Invite by going to `Main Menu` > `Team Settings` > `Allow any user with an account on this server to join`. This is required because there is no way to add all Mattermost users to a default team.
+5. In a separate browser window, log in with the following LDAP usernames (passwords are identical):
 
-For more logins, check the LDAP server's documentation.
+ - fry - on Ship's Crew team and Planet Express
+ - hermes - on Administrator's team and Planet Express
+ - bender - Ship's Crew/Planet Express
+ - zoidberg - Only Planet Express
+
+Notice how janky it is and how you have to click way to goddamn much to get to a place where you can see the teams
 
 ## Scripts
 

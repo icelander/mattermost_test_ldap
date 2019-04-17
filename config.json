@@ -1,14 +1,46 @@
 {
     "ServiceSettings": {
         "SiteURL": "http://127.0.0.1:8065",
-        "LicenseFileLocation": "/opt/mattermost/license.txt"
+        "LicenseFileLocation": "/opt/mattermost/license.txt",
+        "ExperimentalLdapGroupSync": true
     },
     "TeamSettings": {
-        "SiteName": "Planet Express"
+        "SiteName": "Planet Express",
+        "ExperimentalPrimaryTeam": ""
     },
     "SqlSettings": {
         "DriverName": "mysql",
         "DataSource": "mmuser:really_secure_password@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s"
+    },
+    "LdapSettings": {
+        "Enable": true,
+        "EnableSync": true,
+        "LdapServer": "127.0.0.1",
+        "LdapPort": 389,
+        "ConnectionSecurity": "",
+        "BaseDN": "ou=people,dc=planetexpress,dc=com",
+        "BindUsername": "cn=admin,dc=planetexpress,dc=com",
+        "BindPassword": "GoodNewsEveryone",
+        "UserFilter": "(objectClass=inetOrgPerson)",
+        "GroupFilter": "(objectClass=Group)",
+        "GroupDisplayNameAttribute": "cn",
+        "GroupIdAttribute": "cn",
+        "FirstNameAttribute": "givenName",
+        "LastNameAttribute": "sn",
+        "EmailAttribute": "mail",
+        "UsernameAttribute": "displayName",
+        "NicknameAttribute": "displayName",
+        "IdAttribute": "uid",
+        "PositionAttribute": "employeeType",
+        "LoginIdAttribute": "uid",
+        "SyncIntervalMinutes": 5,
+        "SkipCertificateVerification": false,
+        "QueryTimeout": 60,
+        "MaxPageSize": 2000,
+        "LoginFieldName": "Planet Express Username",
+        "LoginButtonColor": "#70E3A2",
+        "LoginButtonBorderColor": "#F60100",
+        "LoginButtonTextColor": "#108769"
     },
     "LogSettings": {
         "EnableConsole": true,

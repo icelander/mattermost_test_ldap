@@ -2,3 +2,4 @@
 .DS_Store
 mattermost*.gz
 *license.txt
+config.vagrant.json
