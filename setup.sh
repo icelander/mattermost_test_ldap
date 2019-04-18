@@ -43,7 +43,7 @@ cp /vagrant/mattermost.service /lib/systemd/system/mattermost.service
 systemctl daemon-reload
 
 cd /opt/mattermost
-bin/mattermost user create --email admin@planetexpress.com --username admin --password admin
+bin/mattermost user create --email admin@planetexpress.com --username admin --password admin --system_admin
 bin/mattermost team create --name planet-express --display_name "Planet Express" --email "professor@planetexpress.com"
 bin/mattermost team add planet-express admin@planetexpress.com
 
