@@ -23,7 +23,21 @@ mysql -uroot -p#MYSQL_ROOT_PASSWORD < /vagrant/db_setup.sql
 
 rm -rf /opt/mattermost
 
-cp /vagrant/mattermost-5.10.0-linux-amd64.tar.gz ./
+if [ "$1" != "" ]; then
+    mattermost_version="$1"
+else
+	echo "Mattermost version is required"
+    exit 1
+fi
+
+echo /vagrant/mattermost-$mattermost_version-linux-amd64.tar.gz
+
+if [[ ! -f /vagrant/mattermost-$mattermost_version-linux-amd64.tar.gz ]]; then
+	echo "Downloading Mattermost"
+	wget -P /vagrant/ https://releases.mattermost.com/$mattermost_version/mattermost-$mattermost_version-linux-amd64.tar.gz
+fi
+
+cp /vagrant/mattermost-$mattermost_version-linux-amd64.tar.gz ./
 
 tar -xzf mattermost*.gz
 
