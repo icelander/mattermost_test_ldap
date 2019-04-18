@@ -4,11 +4,16 @@ This sets up a Mattermost server and connects it to Rafael Römhild's great [Ope
 
 ## Server Setup
 
-1. Install license file in this directory, named `license.txt`
+1. Install license file in this directory, named `e20license.txt`
 2. Run `vagrant up`
-3. Go to `http://127.0.0.1` and log in with `admin/admin` or `professor/professor`
+3. Go to `http://127.0.0.1` and log in with `admin/admin`
+4. Configure the Planet Express Team to Open Invite by going to `Main Menu` > `Team Settings` > `Allow any user with an account on this server to join`. This is required because there is no way to add all Mattermost users to a default team.
+5. In a separate browser window, log in with the following LDAP usernames (passwords are identical):
 
-For more logins, check the LDAP server's documentation.
+ - `fry` - on Ship's Crew team and Planet Express
+ - `hermes` - on Administrator's team and Planet Express
+ - `bender` - Ship's Crew/Planet Express
+ - `zoidberg` - Only Planet Express
 
 ## Scripts
 
@@ -28,3 +33,30 @@ This uses the `ldapmodify` command to make changes to the LDAP server to ensure 
 
 0. Install the `ldapmodify` on your system
 1. `/vagrant/update.sh`
+
+
+### Connecting to the server
+
+### SSH
+
+ - `vagrant ssh`
+
+### MySQL
+
+ - Configure your local client like this:
+ 	- **Host:** `127.0.0.1`
+ 	- **Username:** `mmuser`
+ 	- **Password:** `really_secure_password`
+ 	- **Database:** `mattermost`
+ 	- **Port:** `13306`
+
+## Version History
+
+0.1.0 - This release
+
+ - **Added** LDAP Group Sync
+ - **Added** Local Database connection
+ - **Improved** Now using a much smaller config file and using `jq` to merge it with the version's config file.
+ - **Improved** To specify the Mattermost version, set it in the Vagrantfile. It will download that version if it doesn't exist.
+
+0.0.1 - Intial release
