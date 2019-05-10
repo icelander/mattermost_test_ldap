@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-MATTERMOST_VERSION = '5.10.0'
+MATTERMOST_VERSION = '5.7.0'
 
 MYSQL_ROOT_PASSWORD = 'mysql_root_password'
 MATTERMOST_PASSWORD = 'really_secure_password'
