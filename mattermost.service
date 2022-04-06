@@ -1,8 +1,8 @@
 [Unit]
 Description=Mattermost
 After=network.target
-After=mysql.service
-Requires=mysql.service
+After=docker.service
+Requires=docker.service
 
 [Service]
 Type=notify
@@ -16,4 +16,4 @@ Group=mattermost
 LimitNOFILE=49152
 
 [Install]
-WantedBy=mysql.service
+WantedBy=multi-user.target

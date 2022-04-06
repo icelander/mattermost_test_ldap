@@ -1,22 +1,31 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-MATTERMOST_VERSION = '5.10.0'
-
-MYSQL_ROOT_PASSWORD = 'mysql_root_password'
-MATTERMOST_PASSWORD = 'really_secure_password'
+MATTERMOST_VERSION = "6.5.0"
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
-  config.vm.network "forwarded_port", guest: 8065, host: 8065
-  config.vm.network "forwarded_port", guest: 3306, host: 13306
-  config.vm.hostname = 'mattermost'
+  config.vm.box = "bento/ubuntu-20.04"
 
-  setup_script = File.read('setup.sh')
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 4
+  end
 
-  setup_script.gsub!('#MATTERMOST_PASSWORD', MATTERMOST_PASSWORD)
-  setup_script.gsub!('#MYSQL_ROOT_PASSWORD', MYSQL_ROOT_PASSWORD)
- 
-  config.vm.provision :shell, inline: setup_script, args: MATTERMOST_VERSION, run: 'once'
+  config.vm.network "private_network", ip: "192.168.1.100"
+
+  config.vm.provision :shell, path: 'haproxy.sh'
+
+  config.vm.provision :shell, inline: 'tar -xzf /vagrant/ldifs.tgz -C /tmp'
+
+  config.vm.provision :docker, run: 'once'
+  config.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml"
   
+  # Wait 30 seconds for PostgreSQL to come up
+  sleep 30
+  
+  config.vm.provision :shell,
+      path: "mattermost.sh",
+      args: [MATTERMOST_VERSION],
+      run: 'once'
+
 end

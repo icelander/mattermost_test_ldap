@@ -1,62 +1,67 @@
-# Mattermost Test LDAP Server
+# Mattermost Test LDAP server
 
-This sets up a Mattermost server and connects it to Rafael Römhild's great [OpenLDAP Docker Image for testing](https://github.com/rroemhild/docker-test-openldap).
+This will set up a Mattermost server with a pre-populated LDAP server, LDAP admin, and Mailhog for email debugging.
 
-## Server Setup
+## Setup
 
-1. Install license file in this directory, named `e20license.txt`
-2. Run `vagrant up`
-3. Go to `http://127.0.0.1` and log in with `admin/admin`
-4. Configure the Planet Express Team to Open Invite by going to `Main Menu` > `Team Settings` > `Allow any user with an account on this server to join`. This is required because there is no way to add all Mattermost users to a default team.
-5. In a separate browser window, log in with the following LDAP usernames (passwords are identical):
+1. Copyt the Mattermost license file in this directory and name it `e20license.txt`
+2. Edit the Vagrantfile to ensure the IP address of the server does not conflict with other devices on your network
+3. Edit your `hosts` file or DNS server to point `http://mattermost.planex.com` to the IP address of the Vagrant machine
+4. Run `vagrant up`
+5. Go to `http://mattermost.planex.com` and log in with `admin/admin`
+6. Configure the Planet Express Team to Open Invite by going to `Main Menu` > `Team Settings` > `Allow any user with an account on this server to join`. This is required because there is no way to add all Mattermost users to a default team.
 
- - `fry` - on Ship's Crew team and Planet Express
- - `hermes` - on Administrator's team and Planet Express
- - `bender` - Ship's Crew/Planet Express
- - `zoidberg` - Only Planet Express
+## Connecting to the Server
 
-## Scripts
+### Hosts
 
-### ldap-check.sh
+Add the following hosts to your `hosts` file or DNS:
 
-This is cloned from [the Mattermost server scripts](https://github.com/mattermost/mattermost-server/blob/master/scripts/ldap-check.sh) and reads your Mattermost config and generates and run an `ldapsearch` command to test your settings.
-
-0. Install the `ldapsearch` binary on your system
-1. `sudo mv /vagrant/ldap-check.sh /opt/mattermost/ldap-check.sh`
-2. `cd /opt/mattermost`
-3. `sudo chmod +x ldap-check.sh`
-4. `./ldap-check.sh user@example.com`
-
-### update.sh
-
-This uses the `ldapmodify` command to make changes to the LDAP server to ensure they're synced to Mattermost. Example LDIF files are available in the `ldifs` directory.
-
-0. Install the `ldapmodify` on your system
-1. `/vagrant/update.sh`
-
-
-### Connecting to the server
+ - `mail.planex.com`
+ - `mattermost.planex.com`
+ - `ldapadmin.planex.com`
 
 ### SSH
 
  - `vagrant ssh`
 
-### MySQL
+### PostgreSQL
 
  - Configure your local client like this:
  	- **Host:** `127.0.0.1`
  	- **Username:** `mmuser`
  	- **Password:** `really_secure_password`
  	- **Database:** `mattermost`
- 	- **Port:** `13306`
+ 	- **Port:** `5432`
+
+### LDAP Admin
+
+To connect to the LDAP Admin system, first edit hour `hosts` file or DNS server to point `http://ldapadmin.planex.com`. Then, visit that site in your web browser and log in with these credentials:
+
+ - `cn=admin,dc=planetexpress,dc=com`
+ - `GoodNewsEveryone`
+
+### Mailhog
+
+Go to `http://mail.planex.com` and you should see the Mailhog interface
 
 ## Version History
 
-0.1.0 - This release
+### 0.2.0 - This release
+
+ - **Added** More LDAP users and groups
+ - **Added** LDAP Administration
+ - **Added** Added Mailhog for email debugging
+ - **Improved** Now using docker-compose for everything but Mattermost
+ - **Improved** Now using Mattermost v6.5
+ - **Changed** Using `mmctl` for server setup
+ - **Changed** Using PostgreSQL
+
+### 0.1.0
 
  - **Added** LDAP Group Sync
  - **Added** Local Database connection
  - **Improved** Now using a much smaller config file and using `jq` to merge it with the version's config file.
  - **Improved** To specify the Mattermost version, set it in the Vagrantfile. It will download that version if it doesn't exist.
 
-0.0.1 - Intial release
+### 0.0.1

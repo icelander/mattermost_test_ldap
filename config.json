@@ -1,46 +1,24 @@
 {
     "ServiceSettings": {
-        "SiteURL": "http://127.0.0.1:8065",
-        "LicenseFileLocation": "/opt/mattermost/license.txt",
-        "ExperimentalLdapGroupSync": true
+        "SiteURL": "http://mattermost.planex.com/",
+        "AllowedUntrustedInternalConnections": "127.0.0.1, localhost",
+        "EnableLocalMode": true,
+        "EnableTutorial": false,
+        "EnableOnboardingFlow": false
     },
     "TeamSettings": {
-        "SiteName": "Planet Express",
-        "ExperimentalPrimaryTeam": ""
+        "SiteName": "Planet Express Chat"
     },
     "SqlSettings": {
-        "DriverName": "mysql",
-        "DataSource": "mmuser:really_secure_password@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s"
+        "DriverName": "postgres",
+        "DataSource": "postgres://mmuser:really_secure_password@127.0.0.1:5432/mattermost?sslmode=disable&connect_timeout=10"
     },
-    "LdapSettings": {
-        "Enable": true,
-        "EnableSync": true,
-        "LdapServer": "127.0.0.1",
-        "LdapPort": 389,
-        "ConnectionSecurity": "",
-        "BaseDN": "ou=people,dc=planetexpress,dc=com",
-        "BindUsername": "cn=admin,dc=planetexpress,dc=com",
-        "BindPassword": "GoodNewsEveryone",
-        "UserFilter": "(objectClass=inetOrgPerson)",
-        "GroupFilter": "(objectClass=Group)",
-        "GroupDisplayNameAttribute": "cn",
-        "GroupIdAttribute": "cn",
-        "FirstNameAttribute": "givenName",
-        "LastNameAttribute": "sn",
-        "EmailAttribute": "mail",
-        "UsernameAttribute": "displayName",
-        "NicknameAttribute": "displayName",
-        "IdAttribute": "uid",
-        "PositionAttribute": "employeeType",
-        "LoginIdAttribute": "uid",
-        "SyncIntervalMinutes": 5,
-        "SkipCertificateVerification": false,
-        "QueryTimeout": 60,
-        "MaxPageSize": 2000,
-        "LoginFieldName": "Planet Express Username",
-        "LoginButtonColor": "#70E3A2",
-        "LoginButtonBorderColor": "#F60100",
-        "LoginButtonTextColor": "#108769"
+    "PasswordSettings": {
+        "MinimumLength": 5,
+        "Lowercase": false,
+        "Number": false,
+        "Uppercase": false,
+        "Symbol": false
     },
     "LogSettings": {
         "EnableConsole": true,
@@ -48,9 +26,41 @@
         "ConsoleJson": false,
         "EnableFile": true,
         "FileLevel": "DEBUG",
-        "FileJson": true,
-        "FileLocation": "",
-        "EnableWebhookDebugging": true,
-        "EnableDiagnostics": false
+        "FileJson": false
+    },
+    "LdapSettings": {
+        "Enable": true,
+        "EnableSync": true,
+        "LdapServer": "127.0.0.1",
+        "LdapPort": 389,
+        "BaseDN": "dc=planetexpress,dc=com",
+        "BindUsername": "cn=admin,dc=planetexpress,dc=com",
+        "BindPassword": "GoodNewsEveryone",
+        "UserFilter": "(objectClass=inetOrgPerson)",
+        "GroupFilter": "(objectClass=Group)",
+        "GuestFilter": "",
+        "EnableAdminFilter": false,
+        "AdminFilter": "",
+        "GroupDisplayNameAttribute": "cn",
+        "GroupIdAttribute": "cn",
+        "FirstNameAttribute": "cn",
+        "LastNameAttribute": "sn",
+        "EmailAttribute": "mail",
+        "UsernameAttribute": "uid",
+        "NicknameAttribute": "givenName",
+        "IdAttribute": "entryUUID",
+        "PositionAttribute": "ou",
+        "LoginIdAttribute": "uid",
+        "LoginFieldName": "Planet Express Username",
+        "PictureAttribute": "jpegPhoto"
+    },
+    "PluginSettings": {
+        "Enable": true,
+        "EnableUploads": true
+    },
+    "EmailSettings": {
+        "FeedbackName": "Planex Chat",
+        "SMTPServer": "127.0.0.1",
+        "SMTPPort": "10025"
     }
 }
